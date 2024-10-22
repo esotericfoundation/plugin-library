@@ -6,6 +6,8 @@ plugins {
 
 repositories {
     mavenCentral()
+
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
@@ -17,6 +19,8 @@ dependencies {
     api(libs.commons.math3)
 
     implementation(libs.guava)
+
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 }
 
 java {
