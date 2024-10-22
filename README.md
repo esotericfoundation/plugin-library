@@ -1,2 +1,3 @@
-# esoteric-plugin-library
-A fully functional Minecraft plugin library written in Kotlin.
+# Esoteric Plugin Library
+
+> A fully functional Minecraft plugin library written in Kotlin.
