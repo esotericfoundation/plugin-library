@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.guava)
 
     compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("net.kyori:adventure-api:4.17.0")
 }
 
 java {
