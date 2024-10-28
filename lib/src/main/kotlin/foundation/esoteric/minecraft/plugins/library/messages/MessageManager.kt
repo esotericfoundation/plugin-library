@@ -2,6 +2,7 @@ package foundation.esoteric.minecraft.plugins.library.messages
 
 import foundation.esoteric.utility.resource.ResourceUtility
 import org.bukkit.plugin.java.JavaPlugin
+import java.io.File
 
 /**
  * The message manager class provides utility for dealing with messages in your
@@ -13,9 +14,13 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 class MessageManager(plugin: JavaPlugin) {
 
+    private val messagesFolder: File
+
     init {
         ResourceUtility.getResourceFilePaths("messages").forEach {
             path -> plugin.saveResource(path.toString(), !plugin.config.getBoolean("messages.enable-customisation", false))
         }
+
+        messagesFolder = File(plugin.dataFolder, "messages")
     }
 }
