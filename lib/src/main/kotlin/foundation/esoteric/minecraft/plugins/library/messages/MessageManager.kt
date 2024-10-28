@@ -1,7 +1,6 @@
 package foundation.esoteric.minecraft.plugins.library.messages
 
 import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
-import foundation.esoteric.utility.resource.ResourceUtility
 import java.io.File
 
 /**
