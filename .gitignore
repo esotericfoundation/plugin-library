@@ -31,3 +31,6 @@ replay_pid*
 
 # Ignore Gradle build output directory
 build
+
+# Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
