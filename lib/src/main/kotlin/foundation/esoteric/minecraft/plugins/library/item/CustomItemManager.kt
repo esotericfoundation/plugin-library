@@ -4,15 +4,11 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 
-class CustomItemManager(private val plugin: JavaPlugin) {
+class CustomItemManager(plugin: JavaPlugin) {
 
     private val customItemMap: MutableMap<String, CustomItem> = HashMap()
 
     val customItemIdKey: NamespacedKey = NamespacedKey(plugin, "custom_item_id")
-
-    fun getPlugin(): JavaPlugin {
-        return plugin
-    }
 
     fun addCustomItem(itemId: String, customItem: CustomItem) {
         customItemMap[itemId] = customItem
@@ -22,7 +18,7 @@ class CustomItemManager(private val plugin: JavaPlugin) {
         return customItemMap[itemId]
     }
 
-    fun giveCustomItem(itemId: String, player: Player?) {
-        customItemMap[itemId]!!.give(player!!)
+    fun giveCustomItem(itemId: String, player: Player) {
+        customItemMap[itemId]!!.give(player)
     }
 }

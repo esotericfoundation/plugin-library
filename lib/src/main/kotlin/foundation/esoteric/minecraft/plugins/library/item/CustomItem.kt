@@ -15,9 +15,9 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
         plugin.customItemManager.addCustomItem(itemId, this)
     }
 
-    protected abstract fun generateCustomItem(baseCustomItem: ItemStack?, player: Player?): ItemStack
+    protected abstract fun generateCustomItem(baseCustomItem: ItemStack, player: Player): ItemStack
 
-    fun getCustomItem(player: Player?): ItemStack {
+    fun getCustomItem(player: Player): ItemStack {
         val item = ItemStack(material)
         item.editMeta { meta: ItemMeta ->
             meta.persistentDataContainer.set(
@@ -26,6 +26,7 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
                 itemId
             )
         }
+
         return generateCustomItem(item, player)
     }
 
@@ -38,15 +39,9 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
             return false
         }
 
-        val dataContainerItemIdValue =
-            itemStack.itemMeta.persistentDataContainer.get(plugin.customItemManager.customItemIdKey, PersistentDataType.STRING)
-                ?: return false
+        val dataContainerItemIdValue = itemStack.itemMeta.persistentDataContainer.get(plugin.customItemManager.customItemIdKey, PersistentDataType.STRING) ?: return false
 
-        return try {
-            itemId === dataContainerItemIdValue
-        } catch (exception: IllegalArgumentException) {
-            false
-        }
+        return itemId == dataContainerItemIdValue
     }
 
     fun give(player: Player) {
