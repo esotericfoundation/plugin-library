@@ -18,6 +18,10 @@ class CustomItemManager(plugin: JavaPlugin) {
         return customItemMap[itemId]
     }
 
+    fun getCustomItemIds(): MutableSet<String> {
+        return customItemMap.keys
+    }
+
     fun giveCustomItem(itemId: String, player: Player) {
         customItemMap[itemId]!!.give(player)
     }
