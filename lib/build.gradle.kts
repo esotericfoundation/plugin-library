@@ -2,7 +2,12 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 
     `java-library`
+
+    id("maven-publish")
 }
+
+group = "foundation.esoteric"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
@@ -33,6 +38,21 @@ java {
     }
 }
 
+tasks.named<Jar>("jar") {
+    archiveFileName.set("${rootProject.name}-${project.version}.jar")
+}
+
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = group.toString()
+            artifactId = rootProject.name
+            version = version.toString()
+        }
+    }
 }
