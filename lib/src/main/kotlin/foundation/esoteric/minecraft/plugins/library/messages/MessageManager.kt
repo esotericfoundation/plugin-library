@@ -16,6 +16,6 @@ class MessageManager(plugin: FileManagedPlugin) {
     private val messagesFolder: File
 
     init {
-        messagesFolder = plugin.getFileManager().saveResourceFolder("messages", !plugin.config.getBoolean("messages.enable-customisation", false))
+        messagesFolder = plugin.fileManager.saveResourceFolder("messages", !plugin.config.getBoolean("messages.enable-customisation", false))
     }
 }
