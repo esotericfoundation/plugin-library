@@ -1,17 +1,17 @@
-package foundation.esoteric.minecraft.plugin.library.language
+package foundation.esoteric.minecraft.plugin.library.messages
 
 import foundation.esoteric.utility.resource.ResourceUtility
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
- * The language manager class provides utility for dealing with
- * internationalising your plugin, which means allowing messages
+ * The message manager class provides utility for dealing with messages in your
+ * plugin, as well as internationalising your plugin, which means allowing messages
  * to be in a language that the player has selected.
  *
- * If you intend to use the language manager, create a "languages"
+ * If you intend to use the message manager, create a "messages"
  * folder in your "resources" directory.
  */
-class LanguageManager(plugin: JavaPlugin) {
+class MessageManager(plugin: JavaPlugin) {
 
     init {
         ResourceUtility.getResourceFilePaths("messages").forEach {
