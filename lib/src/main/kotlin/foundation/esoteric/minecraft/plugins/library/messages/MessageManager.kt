@@ -1,4 +1,4 @@
-package foundation.esoteric.minecraft.plugin.library.messages
+package foundation.esoteric.minecraft.plugins.library.messages
 
 import foundation.esoteric.utility.resource.ResourceUtility
 import org.bukkit.plugin.java.JavaPlugin
