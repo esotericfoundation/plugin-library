@@ -1,6 +1,6 @@
 package foundation.esoteric.minecraft.plugin.library.language
 
-import org.bukkit.configuration.file.FileConfiguration
+import foundation.esoteric.utility.resource.ResourceUtility
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
@@ -13,5 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 class LanguageManager(plugin: JavaPlugin) {
 
-    val config: FileConfiguration = plugin.config
+    init {
+        ResourceUtility.getResourceFilePaths("messages").forEach {
+            path -> plugin.saveResource(path.toString(), false)
+        }
+    }
 }
