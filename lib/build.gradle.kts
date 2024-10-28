@@ -8,6 +8,7 @@ repositories {
     mavenCentral()
 
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -22,6 +23,8 @@ dependencies {
 
     compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("net.kyori:adventure-api:4.17.0")
+
+    implementation("com.github.EsotericFoundation:utility.kt:0.1.0")
 }
 
 java {
