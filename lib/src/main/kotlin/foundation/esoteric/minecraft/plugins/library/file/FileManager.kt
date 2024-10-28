@@ -11,4 +11,8 @@ class FileManager(private val plugin: JavaPlugin) {
             path -> plugin.saveResource(path.toString(), replace)
         }
     }
+
+    fun saveResourceFolder(resourcePath: String, replace: Boolean = false) {
+        saveResourceFolder(Path.of(resourcePath), replace)
+    }
 }
