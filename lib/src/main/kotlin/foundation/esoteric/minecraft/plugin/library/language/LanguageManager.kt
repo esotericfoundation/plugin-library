@@ -15,7 +15,7 @@ class LanguageManager(plugin: JavaPlugin) {
 
     init {
         ResourceUtility.getResourceFilePaths("messages").forEach {
-            path -> plugin.saveResource(path.toString(), false)
+            path -> plugin.saveResource(path.toString(), !plugin.config.getBoolean("messages.enable-customisation", false))
         }
     }
 }
