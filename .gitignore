@@ -34,3 +34,6 @@ build
 
 # Gradle wrapper
 !gradle/wrapper/gradle-wrapper.jar
+
+# VSCode files
+lib/bin
