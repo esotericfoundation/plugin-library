@@ -1,0 +1,7 @@
+main: foundation.esoteric.minecraft.plugins.library.TestPlugin
+name: TestPlugin
+version: 1.0.0
+description: A plugin used to test the Esoteric Plugin Library.
+authors:
+  - Esoteric Foundation
+  - Esoteric Enderman
