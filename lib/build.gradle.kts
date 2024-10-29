@@ -33,7 +33,9 @@ dependencies {
 
     implementation("dev.jorel", "commandapi-bukkit-shade-mojang-mapped", "9.6.0")
 
-    implementation("com.github.EsotericFoundation:utility.kt:0.3.0")
+    implementation("commons-io:commons-io:2.17.0")
+
+    implementation("com.github.EsotericFoundation:utility.kt:0.4.0")
 }
 
 java {
