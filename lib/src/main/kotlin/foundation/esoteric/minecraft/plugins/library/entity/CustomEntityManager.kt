@@ -23,6 +23,10 @@ class CustomEntityManager(private val plugin: JavaPlugin) {
         return customEntityMap[entityId]
     }
 
+    fun getCustomEntityIds(): Set<String> {
+        return customEntityMap.keys
+    }
+
     fun spawnEntity(entityId: String, location: Location?): List<Entity?>? {
         return getAbstractCustomEntity(entityId)?.getCustomEntity(location)
     }
