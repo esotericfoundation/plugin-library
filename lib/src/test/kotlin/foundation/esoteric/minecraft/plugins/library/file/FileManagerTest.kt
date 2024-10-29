@@ -26,6 +26,10 @@ class FileManagerTest {
         val testFileOne = File(testOneDir, "Test File 1.txt")
         val testFileTwo = File(testOneDir, "Test File 2.txt")
 
+        val subFolder = File(testOneDir, "Subfolder")
+
+        val testFileThree = File(subFolder, "Test File 3.txt")
+
         assertTrue(fileDir.exists())
         assertTrue(fileDir.isDirectory)
         assertNotNull(fileDir.listFiles())
@@ -39,7 +43,7 @@ class FileManagerTest {
         assertTrue(testOneDir.exists())
         assertTrue(testOneDir.isDirectory)
         assertNotNull(testOneDir.listFiles())
-        assertEquals(testOneDir.listFiles()!!.size, 2)
+        assertEquals(testOneDir.listFiles()!!.size, 3)
 
         assertTrue(testFileOne.exists())
         assertFalse(testFileOne.isDirectory)
@@ -48,5 +52,14 @@ class FileManagerTest {
         assertTrue(testFileTwo.exists())
         assertFalse(testFileTwo.isDirectory)
         assertEquals(testFileTwo.readText(), "This file is used to test the FileManager.\r\n")
+
+        assertTrue(subFolder.exists())
+        assertTrue(subFolder.isDirectory)
+        assertNotNull(subFolder.listFiles())
+        assertEquals(subFolder.listFiles()!!.size, 1)
+
+        assertTrue(testFileThree.exists())
+        assertFalse(testFileThree.isDirectory)
+        assertEquals(testFileThree.readText(), "A third test file for the FileManagerTest.\r\n")
     }
 }
