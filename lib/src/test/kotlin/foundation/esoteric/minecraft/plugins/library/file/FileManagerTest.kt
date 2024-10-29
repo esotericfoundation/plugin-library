@@ -3,9 +3,7 @@ package foundation.esoteric.minecraft.plugins.library.file
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
 import java.io.File
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class FileManagerTest {
 
@@ -19,9 +17,36 @@ class FileManagerTest {
     }
 
     @Test fun savingFolderWorks() {
-        fileManager.saveResourceFolder("file/FileManagerTest")
+        fileManager.saveResourceFolder("file/FileManagerTest/1")
 
-        assertTrue(File(plugin.dataFolder, "file").exists())
-        assertTrue(File(plugin.dataFolder, "file/FileManagerTest").exists())
+        val fileDir = File(plugin.dataFolder, "file")
+        val fileManagerTestDir = File(fileDir, "FileManagerTest")
+        val testOneDir = File(fileManagerTestDir, "1")
+
+        val testFileOne = File(testOneDir, "Test File 1.txt")
+        val testFileTwo = File(testOneDir, "Test File 2.txt")
+
+        assertTrue(fileDir.exists())
+        assertTrue(fileDir.isDirectory)
+        assertNotNull(fileDir.listFiles())
+        assertEquals(fileDir.listFiles()!!.size, 1)
+
+        assertTrue(fileManagerTestDir.exists())
+        assertTrue(fileManagerTestDir.isDirectory)
+        assertNotNull(fileManagerTestDir.listFiles())
+        assertEquals(fileManagerTestDir.listFiles()!!.size, 1)
+
+        assertTrue(testOneDir.exists())
+        assertTrue(testOneDir.isDirectory)
+        assertNotNull(testOneDir.listFiles())
+        assertEquals(testOneDir.listFiles()!!.size, 2)
+
+        assertTrue(testFileOne.exists())
+        assertFalse(testFileOne.isDirectory)
+        assertEquals(testFileOne.readText(), "This file is used to test the FileManager.\r\n")
+
+        assertTrue(testFileTwo.exists())
+        assertFalse(testFileTwo.isDirectory)
+        assertEquals(testFileTwo.readText(), "This file is used to test the FileManager.\r\n")
     }
 }
