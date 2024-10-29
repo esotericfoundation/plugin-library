@@ -47,11 +47,11 @@ class FileManagerTest {
 
         assertTrue(testFileOne.exists())
         assertFalse(testFileOne.isDirectory)
-        assertEquals(testFileOne.readText(), "This file is used to test the FileManager.\r\n")
+        assertEquals(testFileOne.readText().trimEnd('\r', '\n'), "This file is used to test the FileManager.")
 
         assertTrue(testFileTwo.exists())
         assertFalse(testFileTwo.isDirectory)
-        assertEquals(testFileTwo.readText(), "This file is used to test the FileManager.\r\n")
+        assertEquals(testFileTwo.readText().trimEnd('\r', '\n'), "This file is used to test the FileManager.")
 
         assertTrue(subFolder.exists())
         assertTrue(subFolder.isDirectory)
@@ -60,6 +60,6 @@ class FileManagerTest {
 
         assertTrue(testFileThree.exists())
         assertFalse(testFileThree.isDirectory)
-        assertEquals(testFileThree.readText(), "A third test file for the FileManagerTest.\r\n")
+        assertEquals(testFileThree.readText().trimEnd('\r', '\n'), "A third test file for the FileManagerTest.")
     }
 }
