@@ -22,6 +22,8 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.21:3.107.0")
+
     api(libs.commons.math3)
 
     implementation(libs.guava)
