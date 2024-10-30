@@ -62,4 +62,8 @@ class FileManagerTest {
         assertFalse(testFileThree.isDirectory)
         assertEquals(testFileThree.readText().trimEnd('\r', '\n'), "A third test file for the FileManagerTest.")
     }
+
+    @AfterTest fun unmockFileManager() {
+        MockBukkit.unmock()
+    }
 }

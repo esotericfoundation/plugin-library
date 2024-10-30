@@ -15,5 +15,7 @@ class MessageManagerTest {
 
         val messagesFolder = File(plugin.dataFolder, "messages")
         assertTrue(messagesFolder.exists())
+
+        MockBukkit.unmock()
     }
 }
