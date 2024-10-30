@@ -15,14 +15,14 @@ class GiveCustomItemCommand(plugin: CustomItemPlugin) : CommandAPICommand("give-
     init {
         val customItemArgumentNodeName = "custom-item-id"
 
-        withArguments(StringArgument(customItemArgumentNodeName).includeSuggestions(ArgumentSuggestions.strings(plugin.customItemManager.getCustomItemIds())))
+        withArguments(StringArgument(customItemArgumentNodeName).includeSuggestions(ArgumentSuggestions.strings(plugin.customItemManager.getItemIds())))
         withPermission(CommandPermission.OP)
 
         executesPlayer(PlayerExecutionInfo {
             executionInfo: ExecutionInfo<Player, BukkitPlayer>? ->
             val item = executionInfo!!.args()[0] as String
 
-            plugin.customItemManager.giveCustomItem(item, executionInfo.sender())
+            plugin.customItemManager.giveItem(item, executionInfo.sender())
         })
 
         register(plugin as JavaPlugin)

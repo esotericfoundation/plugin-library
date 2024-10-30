@@ -21,7 +21,7 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
     init {
         Bukkit.getPluginManager().registerEvents(this, plugin)
 
-        plugin.customItemManager.addCustomItem(itemId, this)
+        plugin.customItemManager.addItem(itemId, this)
     }
 
     /**
@@ -44,7 +44,7 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
 
         item.editMeta { meta: ItemMeta ->
             meta.persistentDataContainer.set(
-                plugin.customItemManager.customItemIdKey,
+                plugin.customItemManager.itemIdKey,
                 PersistentDataType.STRING,
                 itemId
             )
@@ -63,7 +63,7 @@ abstract class CustomItem(private val plugin: CustomItemPlugin, private val item
             return false
         }
 
-        val dataContainerItemIdValue = itemStack.itemMeta.persistentDataContainer.get(plugin.customItemManager.customItemIdKey, PersistentDataType.STRING) ?: return false
+        val dataContainerItemIdValue = itemStack.itemMeta.persistentDataContainer.get(plugin.customItemManager.itemIdKey, PersistentDataType.STRING) ?: return false
 
         return itemId == dataContainerItemIdValue
     }

@@ -6,23 +6,23 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class CustomItemManager(plugin: JavaPlugin) {
 
-    private val customItemMap: MutableMap<String, CustomItem> = HashMap()
+    private val itemMap: MutableMap<String, CustomItem> = HashMap()
 
-    val customItemIdKey: NamespacedKey = NamespacedKey(plugin, "custom_item_id")
+    val itemIdKey: NamespacedKey = NamespacedKey(plugin, "custom_item_id")
 
-    fun addCustomItem(itemId: String, customItem: CustomItem) {
-        customItemMap[itemId] = customItem
+    fun addItem(itemId: String, customItem: CustomItem) {
+        itemMap[itemId] = customItem
     }
 
-    fun getAbstractCustomItem(itemId: String): CustomItem? {
-        return customItemMap[itemId]
+    fun getItem(itemId: String): CustomItem? {
+        return itemMap[itemId]
     }
 
-    fun getCustomItemIds(): MutableSet<String> {
-        return customItemMap.keys
+    fun getItemIds(): MutableSet<String> {
+        return itemMap.keys
     }
 
-    fun giveCustomItem(itemId: String, player: Player) {
-        customItemMap[itemId]!!.give(player)
+    fun giveItem(itemId: String, player: Player) {
+        itemMap[itemId]!!.give(player)
     }
 }
