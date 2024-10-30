@@ -5,29 +5,25 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Entity
 import org.bukkit.plugin.java.JavaPlugin
 
-class CustomEntityManager(private val plugin: JavaPlugin) {
+class CustomEntityManager(plugin: JavaPlugin) {
 
     private val customEntityMap: MutableMap<String, CustomEntity<*>> = HashMap()
 
     val customEntityIdKey: NamespacedKey = NamespacedKey(plugin, "custom_entity_id")
 
-    fun getPlugin(): JavaPlugin {
-        return plugin
-    }
-
-    fun addCustomEntity(itemId: String, customEntity: CustomEntity<*>) {
+    fun addEntity(itemId: String, customEntity: CustomEntity<*>) {
         customEntityMap[itemId] = customEntity
     }
 
-    fun getAbstractCustomEntity(entityId: String): CustomEntity<*>? {
+    fun getEntity(entityId: String): CustomEntity<*>? {
         return customEntityMap[entityId]
     }
 
-    fun getCustomEntityIds(): Set<String> {
+    fun getEntityIds(): Set<String> {
         return customEntityMap.keys
     }
 
-    fun spawnEntity(entityId: String, location: Location?): List<Entity?>? {
-        return getAbstractCustomEntity(entityId)?.getCustomEntity(location)
+    fun spawnEntity(entityId: String, location: Location): Entity? {
+        return getEntity(entityId)?.createEntity(location)
     }
 }
