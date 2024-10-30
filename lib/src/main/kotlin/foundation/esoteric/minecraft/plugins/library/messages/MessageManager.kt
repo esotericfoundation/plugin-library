@@ -1,7 +1,6 @@
 package foundation.esoteric.minecraft.plugins.library.messages
 
 import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
-import org.apache.commons.lang3.LocaleUtils
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.util.Locale
@@ -28,7 +27,7 @@ class MessageManager(plugin: FileManagedPlugin) {
 
     private fun loadMessages() {
         for (file in messagesFolder.listFiles()!!) {
-            val locale = LocaleUtils.toLocale(file.name.removeSuffix(".yml"))
+            val locale = Locale.forLanguageTag(file.name.removeSuffix(".yml"))
 
             val map = HashMap<String, String>()
 
