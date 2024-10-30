@@ -17,7 +17,7 @@ import org.bukkit.persistence.PersistentDataType
  *
  * @see foundation.esoteric.minecraft.plugins.library.commands.GiveCustomItemCommand If you want a command that allows you to give yourself this custom item.
  */
-abstract class CustomItem(private val plugin: CustomItemPlugin, private val itemId: String, private val material: Material) : Listener {
+abstract class CustomItem(protected val plugin: CustomItemPlugin, private val itemId: String, private val material: Material) : Listener {
     init {
         Bukkit.getPluginManager().registerEvents(this, plugin)
 
