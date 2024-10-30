@@ -8,6 +8,8 @@ import java.nio.file.Path
 class FileManager(private val plugin: JavaPlugin) {
 
     fun saveResourceFolder(resourcePath: Path, replace: Boolean = false): File {
+        plugin.dataFolder.mkdir()
+
         ResourceUtility.getResourceFilePaths(resourcePath).forEach {
             path -> plugin.saveResource(path.toString(), replace)
         }
