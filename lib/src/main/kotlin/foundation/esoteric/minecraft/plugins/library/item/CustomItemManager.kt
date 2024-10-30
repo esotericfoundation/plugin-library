@@ -8,7 +8,7 @@ class CustomItemManager(plugin: JavaPlugin) {
 
     private val itemMap: MutableMap<String, CustomItem> = HashMap()
 
-    val itemIdKey: NamespacedKey = NamespacedKey(plugin, "custom_item_id")
+    internal val itemIdKey: NamespacedKey = NamespacedKey(plugin, "custom_item_id")
 
     fun addItem(itemId: String, customItem: CustomItem) {
         itemMap[itemId] = customItem
