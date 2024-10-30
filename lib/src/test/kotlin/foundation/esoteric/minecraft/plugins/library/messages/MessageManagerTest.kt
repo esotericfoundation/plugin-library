@@ -3,19 +3,29 @@ package foundation.esoteric.minecraft.plugins.library.messages
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
 import java.io.File
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
 class MessageManagerTest {
-    @Test fun savesMessagesResource() {
+
+    private var plugin: TestPlugin? = null
+    private var messageManager: MessageManager? = null
+
+    @BeforeTest fun mockMessageManager() {
         MockBukkit.mock()
-        val plugin = MockBukkit.load(TestPlugin::class.java)
+        plugin = MockBukkit.load(TestPlugin::class.java)
 
-        val messageManager = MessageManager(plugin)
+        messageManager = MessageManager(plugin!!)
+    }
 
-        val messagesFolder = File(plugin.dataFolder, "messages")
+    @Test fun savesMessagesResource() {
+        val messagesFolder = File(plugin!!.dataFolder, "messages")
         assertTrue(messagesFolder.exists())
+    }
 
+    @AfterTest fun unmockMessageManager() {
         MockBukkit.unmock()
     }
 }
