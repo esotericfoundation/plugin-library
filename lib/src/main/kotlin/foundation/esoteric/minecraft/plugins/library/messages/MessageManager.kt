@@ -40,7 +40,7 @@ class MessageManager(plugin: FileManagedPlugin) {
         }
     }
 
-    fun getRawMessage(language: Locale, messageKey: String): String {
+    internal fun getRawMessage(language: Locale, messageKey: String): String {
         val messages = messageMap[language]
         require(messages != null) { "Invalid language." }
 
