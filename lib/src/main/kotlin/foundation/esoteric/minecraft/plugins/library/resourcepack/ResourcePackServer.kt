@@ -1,42 +1,40 @@
-package foundation.esoteric.minecraft.plugins.library.http.server
+package foundation.esoteric.minecraft.plugins.library.resourcepack
 
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpHandler
 import com.sun.net.httpserver.HttpServer
-import foundation.esoteric.minecraft.plugins.library.resourcepack.ResourcePackListener
-import foundation.esoteric.minecraft.plugins.library.resourcepack.ResourcePackManager
-import foundation.esoteric.minecraft.plugins.library.resourcepack.ResourcePackPlugin
 import org.bukkit.Bukkit
-import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.net.InetSocketAddress
 
-class HttpServerManager(private val plugin: ResourcePackPlugin) {
+/**
+ * This class handles sending the resource pack to clients.
+ *
+ * @param plugin The plugin that implements this resource pack.
+ */
+class ResourcePackServer(private val plugin: ResourcePackPlugin) {
 
-    private val hostName: String
-    private val port: Int
+    private val hostName: String = Bukkit.getServer().ip
+    private val port: Int = plugin.config.getInt("http-server.port")
 
     private val successResponseCode = 200
     private val notFoundResponseCode = 404
 
     private var server: HttpServer? = null
 
-    fun getPort(): Int {
-        return server!!.address.port
+    fun getPort(): Int? {
+        return server?.address?.port
     }
 
-    fun getHostName(): String {
-        return server!!.address.hostName
+    fun getHostName(): String? {
+        return server?.address?.hostName
     }
 
     val socketAddress: String
         get() = getHostName() + ":" + getPort()
 
     init {
-        hostName = Bukkit.getServer().ip
-        port = plugin.getConfig().getInt("http-server.port")
-
         try {
             server = HttpServer.create(InetSocketAddress(hostName, port), 0)
         } catch (exception: IOException) {
@@ -54,13 +52,13 @@ class HttpServerManager(private val plugin: ResourcePackPlugin) {
     internal inner class ResourcePackDownloadHandler : HttpHandler {
         @Throws(IOException::class)
         override fun handle(exchange: HttpExchange) {
-            val resourcePackManager: ResourcePackManager = plugin.resourcePackManager
+            val resourcePackManager = plugin.resourcePackManager
 
-            val file = File(resourcePackManager.resourceZipFilePath)
+            val file = resourcePackManager.resourcePackZipFile!!
 
             if (file.exists()) {
-                exchange.responseHeaders["Content-Type"] = resourcePackManager.resourcePackFileMimeType
-                exchange.responseHeaders["Content-Disposition"] = "attachment; filename=\"" + resourcePackManager.resourcePackResourceFolderName + "." + resourcePackManager.resourcePackFileExtension + "\""
+                exchange.responseHeaders["Content-Type"] = "application/zip"
+                exchange.responseHeaders["Content-Disposition"] = "attachment; filename=\"" + resourcePackManager.resourcePackResourceFolderName + ".zip" + "\""
 
                 exchange.sendResponseHeaders(successResponseCode, file.length())
 
@@ -74,8 +72,9 @@ class HttpServerManager(private val plugin: ResourcePackPlugin) {
                     }
                 }
             } else {
-                val response = "404 (Not Found)\n"
+                val response = "$notFoundResponseCode (Not Found)\n"
                 exchange.sendResponseHeaders(notFoundResponseCode, response.length.toLong())
+
                 val outputStream = exchange.responseBody
                 outputStream.write(response.toByteArray())
                 outputStream.close()
