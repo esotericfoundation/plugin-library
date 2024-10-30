@@ -24,7 +24,7 @@ class MessageManagerTest {
     }
 
     @Test fun getMessageWorks() {
-        val message = messageManager!!.getRawMessage(Locale.forLanguageTag("en-uk"), "test-message")
+        val message = messageManager!!.getRawMessage(Locale.UK, "test-message")
         assertEquals(message, "Test")
     }
 
