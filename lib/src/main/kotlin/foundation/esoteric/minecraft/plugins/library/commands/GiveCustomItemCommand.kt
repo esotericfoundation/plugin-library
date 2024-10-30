@@ -1,6 +1,5 @@
 package foundation.esoteric.minecraft.plugins.library.commands
 
-
 import dev.jorel.commandapi.CommandAPICommand
 import dev.jorel.commandapi.CommandPermission
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
