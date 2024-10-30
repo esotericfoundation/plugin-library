@@ -3,10 +3,8 @@ package foundation.esoteric.minecraft.plugins.library.messages
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
 import java.io.File
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertTrue
+import java.util.*
+import kotlin.test.*
 
 class MessageManagerTest {
 
@@ -23,6 +21,11 @@ class MessageManagerTest {
     @Test fun savesMessagesResource() {
         val messagesFolder = File(plugin!!.dataFolder, "messages")
         assertTrue(messagesFolder.exists())
+    }
+
+    @Test fun getMessageWorks() {
+        val message = messageManager!!.getRawMessage(Locale.forLanguageTag("en-uk"), "test-message")
+        assertEquals(message, "Test")
     }
 
     @AfterTest fun unmockMessageManager() {
