@@ -8,10 +8,7 @@ import java.io.File
 
 class ResourcePackManager(private val plugin: FileManagedPlugin) {
 
-    val resourcePackResourceFolderName: String = java.lang.String.join(
-        " ",
-        *plugin::class.java.getSimpleName().split("(?=[A-Z])".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()) + " Resource Pack"
+    val resourcePackResourceFolderName = plugin.name + "ResourcePack"
 
     val resourcePackFileType: String = "application"
     val resourcePackFileExtension: String = "zip"
