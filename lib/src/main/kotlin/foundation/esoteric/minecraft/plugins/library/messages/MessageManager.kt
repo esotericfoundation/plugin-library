@@ -39,4 +39,8 @@ class MessageManager(plugin: FileManagedPlugin) {
             messageMap.put(locale, map)
         }
     }
+
+    fun getRawMessage(language: Locale, messageKey: String): String {
+        return messageMap[language]!![messageKey]!!
+    }
 }
