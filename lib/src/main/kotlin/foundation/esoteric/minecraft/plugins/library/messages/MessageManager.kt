@@ -1,7 +1,10 @@
 package foundation.esoteric.minecraft.plugins.library.messages
 
 import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.configuration.file.YamlConfiguration
+import org.bukkit.entity.Player
 import java.io.File
 import java.util.Locale
 import kotlin.collections.HashMap
@@ -15,6 +18,8 @@ import kotlin.collections.HashMap
  * folder in your "resources" directory.
  */
 class MessageManager(private val plugin: FileManagedPlugin) {
+
+    private val miniMessage = MiniMessage.miniMessage()
 
     private val messagesFolder: File
 
@@ -57,5 +62,11 @@ class MessageManager(private val plugin: FileManagedPlugin) {
         require(message != null) { "Invalid message key." }
 
         return message
+    }
+
+    fun getMessage(player: Player, messageKey: String, fallbackOnDefault: Boolean = true): Component {
+        val rawMessage = getRawMessage(player.locale(), messageKey, fallbackOnDefault)
+
+        return miniMessage.deserialize(rawMessage)
     }
 }
