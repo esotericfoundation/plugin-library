@@ -18,7 +18,7 @@ class MessageManager(private val plugin: FileManagedPlugin) {
 
     private val messagesFolder: File
 
-    private val messageMap: MutableMap<Locale, Map<String, String>> = HashMap()
+    private val messageMap = HashMap<Locale, Map<String, String>>()
 
     init {
         messagesFolder = plugin.fileManager.saveResourceFolder("messages", !plugin.config.getBoolean("messages.enable-customisation", false))
