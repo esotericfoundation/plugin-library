@@ -14,7 +14,7 @@ import kotlin.collections.HashMap
  * If you intend to use the message manager, create a "messages"
  * folder in your "resources" directory.
  */
-class MessageManager(plugin: FileManagedPlugin) {
+class MessageManager(private val plugin: FileManagedPlugin) {
 
     private val messagesFolder: File
 
@@ -40,8 +40,17 @@ class MessageManager(plugin: FileManagedPlugin) {
         }
     }
 
-    internal fun getRawMessage(language: Locale, messageKey: String): String {
-        val messages = messageMap[language]
+    internal fun getRawMessage(language: Locale, messageKey: String, fallbackOnDefault: Boolean = true): String {
+        var messages = messageMap[language]
+
+        if (messages == null && fallbackOnDefault) {
+            val defaultLanguage = Locale.forLanguageTag(plugin.config.getString("messages.default-language"))
+            require(defaultLanguage != null) { "No default language configured." }
+
+            messages = messageMap[language]
+            require(messages != null) { "The default language has no associated messages." }
+        }
+
         require(messages != null) { "Invalid language." }
 
         val message = messages[messageKey]
