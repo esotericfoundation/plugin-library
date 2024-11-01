@@ -9,20 +9,20 @@ import kotlin.test.*
 class ResourcePackTest {
 
     private var plugin: TestPlugin? = null
-    private var resourcePackFolder: File? = null
+    private var resourcePackZip: File? = null
 
     @BeforeTest fun mockResourcePackPlugin() {
         MockBukkit.mock()
         plugin = MockBukkit.load(TestPlugin::class.java)
-        resourcePackFolder = File(plugin!!.dataFolder, "TestPluginResourcePack.zip")
+        resourcePackZip = File(plugin!!.dataFolder, "TestPluginResourcePack.zip")
     }
 
     @Test fun resourcePackSavingWorks() {
-        assertTrue(resourcePackFolder!!.exists())
+        assertTrue(resourcePackZip!!.exists())
     }
 
     @Test fun resourcePackHashIsCorrect() {
-        assertEquals(FileUtility.getSha1Hash(resourcePackFolder!!), "7c5c17ed5fe4a586336ec2e345eeb234b9c7948c")
+        assertEquals(FileUtility.getSha1Hash(resourcePackZip!!), "7c5c17ed5fe4a586336ec2e345eeb234b9c7948c")
     }
 
     @AfterTest fun unmockResourcePackPlugin() {
