@@ -7,11 +7,12 @@ import java.nio.file.Path
 class TexturedItem : CustomItem {
 
     companion object {
-        val startingModelData = 7919
+        var startingModelData: Int? = null
         var texturedItems: Int = 0
     }
 
     constructor(plugin: CustomItemPlugin, itemId: String, material: Material, resourcePath: Path) : super(plugin, itemId, material) {
+        startingModelData = plugin.name.hashCode()
         texturedItems++
     }
 
@@ -22,7 +23,7 @@ class TexturedItem : CustomItem {
 
         item.editMeta {
             meta ->
-            meta.setCustomModelData(startingModelData + texturedItems)
+            meta.setCustomModelData(startingModelData!! + texturedItems)
         }
 
         return item
