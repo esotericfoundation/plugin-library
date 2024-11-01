@@ -1,4 +1,4 @@
-package foundation.esoteric.minecraft.plugins.library.resourcepack
+package foundation.esoteric.minecraft.plugins.library.pack.resource
 
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpHandler

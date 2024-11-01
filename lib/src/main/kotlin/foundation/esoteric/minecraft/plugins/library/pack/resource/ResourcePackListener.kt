@@ -1,4 +1,4 @@
-package foundation.esoteric.minecraft.plugins.library.resourcepack
+package foundation.esoteric.minecraft.plugins.library.pack.resource
 
 import foundation.esoteric.utility.file.FileUtility
 import net.kyori.adventure.resource.ResourcePackInfo
