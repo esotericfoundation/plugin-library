@@ -2,6 +2,7 @@ package foundation.esoteric.minecraft.plugins.library.file
 
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
+import foundation.esoteric.utility.file.FileUtility
 import java.io.File
 import kotlin.test.*
 
@@ -75,6 +76,9 @@ class FileManagerTest {
         assertTrue(resourcePack.exists())
         assertTrue(resourcePack.isFile)
         assertFalse(resourcePack.isDirectory)
+
+        val hash = FileUtility.getSha1Hash(resourcePack)
+        assertEquals("c276751b2c56bc44bce393fb3356c0bd9f3a91b4", hash)
     }
 
     @AfterTest fun unmockFileManager() {
