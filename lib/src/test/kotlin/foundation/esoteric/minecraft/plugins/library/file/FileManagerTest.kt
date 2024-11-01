@@ -7,17 +7,16 @@ import kotlin.test.*
 
 class FileManagerTest {
 
-    private lateinit var plugin: TestPlugin
+    private var plugin: TestPlugin? = null
 
     @BeforeTest fun mockFileManager() {
         MockBukkit.mock()
         plugin = MockBukkit.load(TestPlugin::class.java)
+        plugin!!.fileManager.saveResourceFolder("file/FileManagerTest")
     }
 
     @Test fun savingFolderWorks() {
-        plugin.fileManager.saveResourceFolder("file/FileManagerTest")
-
-        val fileDir = File(plugin.dataFolder, "file")
+        val fileDir = File(plugin!!.dataFolder, "file")
         val fileManagerTestDir = File(fileDir, "FileManagerTest")
 
         val testFileOne = File(fileManagerTestDir, "Test File 1.txt")
@@ -60,8 +59,7 @@ class FileManagerTest {
     }
 
     @Test fun resourcePackHashWorks() {
-        plugin.fileManager.saveResourceFolder("file/FileManagerTest")
-        val resourcePack = File(plugin.dataFolder, "file/fileManagerTest/TestPluginResourcePack.zip")
+        val resourcePack = File(plugin!!.dataFolder, "file/fileManagerTest/TestPluginResourcePack.zip")
         assertTrue(resourcePack.exists())
         assertTrue(resourcePack.isFile)
         assertFalse(resourcePack.isDirectory)
