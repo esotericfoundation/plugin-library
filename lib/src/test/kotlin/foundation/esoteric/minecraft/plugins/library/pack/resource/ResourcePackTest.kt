@@ -11,15 +11,16 @@ import kotlin.test.assertTrue
 class ResourcePackTest {
 
     private var plugin: TestPlugin? = null
+    private var resourcePackFolder: File? = null
 
     @BeforeTest fun mockResourcePackPlugin() {
         MockBukkit.mock()
         plugin = MockBukkit.load(TestPlugin::class.java)
+        resourcePackFolder = File(plugin!!.dataFolder, "TestPluginResourcePack.zip")
     }
 
     @Test fun resourcePackSavingWorks() {
-        val resourcePackFolder = File(plugin!!.dataFolder, "TestPluginResourcePack.zip")
-        assertTrue(resourcePackFolder.exists())
+        assertTrue(resourcePackFolder!!.exists())
     }
 
     @AfterTest fun unmockResourcePackPlugin() {
