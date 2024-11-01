@@ -37,3 +37,6 @@ build
 
 # VSCode files
 lib/bin
+
+# Resource pack for testing
+!TestPluginResourcePack.zip

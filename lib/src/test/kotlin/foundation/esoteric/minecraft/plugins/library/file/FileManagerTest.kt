@@ -22,6 +22,7 @@ class FileManagerTest {
 
         val testFileOne = File(fileManagerTestDir, "Test File 1.txt")
         val testFileTwo = File(fileManagerTestDir, "Test File 2.txt")
+        val resourcePack = File(fileManagerTestDir, "TestPluginResourcePack.zip")
 
         val subFolder = File(fileManagerTestDir, "Subfolder")
 
@@ -35,7 +36,7 @@ class FileManagerTest {
         assertTrue(fileManagerTestDir.exists())
         assertTrue(fileManagerTestDir.isDirectory)
         assertNotNull(fileManagerTestDir.listFiles())
-        assertEquals(fileManagerTestDir.listFiles()!!.size, 3)
+        assertEquals(fileManagerTestDir.listFiles()!!.size, 4)
 
         assertTrue(testFileOne.exists())
         assertFalse(testFileOne.isDirectory)
@@ -44,6 +45,9 @@ class FileManagerTest {
         assertTrue(testFileTwo.exists())
         assertFalse(testFileTwo.isDirectory)
         assertEquals(testFileTwo.readText().trimEnd('\r', '\n'), "This file is used to test the FileManager.")
+
+        assertTrue(resourcePack.exists())
+        assertFalse(resourcePack.isDirectory)
 
         assertTrue(subFolder.exists())
         assertTrue(subFolder.isDirectory)
