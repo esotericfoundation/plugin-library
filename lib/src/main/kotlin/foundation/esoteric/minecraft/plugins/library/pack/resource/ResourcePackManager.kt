@@ -22,12 +22,15 @@ class ResourcePackManager(private val plugin: FileManagedPlugin) {
 
     init {
         val resourcePackFolder: File = plugin.fileManager.saveResourceFolder(resourcePackResourceFolderName, true)
+        resourcePackFolder.listFiles()?.forEach { file -> println(file.name) }
 
         val resourceZipFilePath = plugin.dataPath.toString() + File.separator + resourcePackResourceFolderName + ".zip"
 
         try {
             resourcePackZipFile = File(resourceZipFilePath)
             FileUtility.zipFolder(resourcePackFolder, resourcePackZipFile!!)
+
+            FileUtils.copyFile(resourcePackZipFile, File("./file.txt"))
 
             FileUtils.deleteDirectory(resourcePackFolder)
         } catch (exception: Exception) {
