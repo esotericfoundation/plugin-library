@@ -3,7 +3,7 @@ package foundation.esoteric.minecraft.plugins.library.item
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
-class TexturedItem(plugin: CustomItemPlugin, itemId: String, material: Material) : CustomItem(plugin, itemId, material) {
+open class TexturedItem(plugin: CustomItemPlugin, itemId: String, material: Material) : CustomItem(plugin, itemId, material) {
     override fun toItem(item: ItemStack): ItemStack {
         super.toItem(item)
 
