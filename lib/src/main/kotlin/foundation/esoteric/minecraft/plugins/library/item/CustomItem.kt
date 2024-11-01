@@ -39,7 +39,7 @@ abstract class CustomItem(protected val plugin: CustomItemPlugin, private val it
      * @param item The existing item. The material of this item must match the material of the custom item.
      * @return The transformed `ItemStack`.
      */
-    fun toItem(item: ItemStack): ItemStack {
+    open fun toItem(item: ItemStack): ItemStack {
         require(item.type == material) { "Cannot transform item of material " + item.type + " to item of material " + material.name + "." }
 
         item.editMeta { meta: ItemMeta ->
