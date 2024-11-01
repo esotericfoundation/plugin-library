@@ -59,6 +59,14 @@ class FileManagerTest {
         assertEquals(testFileThree.readText().trimEnd('\r', '\n'), "A third test file for the FileManagerTest.")
     }
 
+    @Test fun resourcePackHashWorks() {
+        plugin.fileManager.saveResourceFolder("file/FileManagerTest")
+        val resourcePack = File(plugin.dataFolder, "file/fileManagerTest/TestPluginResourcePack.zip")
+        assertTrue(resourcePack.exists())
+        assertTrue(resourcePack.isFile)
+        assertFalse(resourcePack.isDirectory)
+    }
+
     @AfterTest fun unmockFileManager() {
         MockBukkit.unmock()
     }
