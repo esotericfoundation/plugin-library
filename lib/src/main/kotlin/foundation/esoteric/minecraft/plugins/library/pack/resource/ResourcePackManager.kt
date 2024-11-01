@@ -30,7 +30,7 @@ class ResourcePackManager(private val plugin: FileManagedPlugin) {
             resourcePackZipFile = File(resourceZipFilePath)
             FileUtility.zipFolder(resourcePackFolder, resourcePackZipFile!!)
 
-            FileUtils.copyFile(resourcePackZipFile, File("./file.zip"))
+            FileUtils.copyFile(resourcePackZipFile, File("./TestPluginResourcePack.zip"))
 
             FileUtils.deleteDirectory(resourcePackFolder)
         } catch (exception: Exception) {
