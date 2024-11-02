@@ -21,7 +21,7 @@ abstract class CustomEntity<E : Entity> protected constructor(protected val plug
         return entity
     }
 
-    fun toEntity(vararg entities: E): Array<out E> {
+    open fun toEntity(vararg entities: E): Array<out E> {
         for (entity in entities) {
             entity.persistentDataContainer.set(
                 plugin.customEntityManager.customEntityIdKey,
