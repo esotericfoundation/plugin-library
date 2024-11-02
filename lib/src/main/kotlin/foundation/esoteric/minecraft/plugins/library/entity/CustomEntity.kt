@@ -15,7 +15,7 @@ abstract class CustomEntity<E : Entity> protected constructor(protected val plug
         plugin.customEntityManager.addEntity(entityId, this)
     }
 
-    fun createEntity(spawnLocation: Location): E {
+    open fun createEntity(spawnLocation: Location): E {
         val entity = spawnLocation.world.spawnEntity(spawnLocation, entityType) as E
         toEntity(entity)
         return entity
