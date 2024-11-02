@@ -5,6 +5,7 @@ import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.event.Listener
+import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.persistence.PersistentDataType
 
 abstract class CustomEntity<E : Entity> protected constructor(protected val plugin: CustomEntityPlugin, private val entityId: String, private val entityType: EntityType) : Listener {
@@ -15,10 +16,12 @@ abstract class CustomEntity<E : Entity> protected constructor(protected val plug
         plugin.customEntityManager.addEntity(entityId, this)
     }
 
-    open fun createEntity(spawnLocation: Location): E {
-        val entity = spawnLocation.world.spawnEntity(spawnLocation, entityType) as E
-        toEntity(entity)
-        return entity
+    fun createEntity(spawnLocation: Location): E {
+        return spawnLocation.world.spawnEntity(spawnLocation, entityType, CreatureSpawnEvent.SpawnReason.DEFAULT) { entity ->
+            toEntity(
+                entity as E
+            )
+        } as E
     }
 
     open fun toEntity(vararg entities: E): Array<out E> {
