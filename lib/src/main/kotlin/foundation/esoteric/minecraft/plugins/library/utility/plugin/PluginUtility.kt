@@ -17,6 +17,8 @@ import java.nio.file.Path
  * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource.
  * @see Plugin.saveResource
  * @see Plugin.saveResources
+ * @see Plugin.getDataFolder
+ * @see Plugin.getDataPath
  * @author Esoteric Enderman
  */
 fun Plugin.saveResource(resourcePath: Path, replace: Boolean = true) {
@@ -34,6 +36,8 @@ fun Plugin.saveResource(resourcePath: Path, replace: Boolean = true) {
  * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource.
  * @see Plugin.saveResource
  * @see Plugin.saveResources
+ * @see Plugin.getDataFolder
+ * @see Plugin.getDataPath
  * @author Esoteric Enderman
  */
 fun Plugin.saveResource(resourcePath: String) {
