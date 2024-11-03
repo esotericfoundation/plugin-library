@@ -8,7 +8,6 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.Locale
 import kotlin.collections.HashMap
-import kotlin.io.path.Path
 
 /**
  * The message manager class provides utility for dealing with messages in your
@@ -22,7 +21,7 @@ class MessageManager(private val plugin: JavaPlugin) {
 
     private val miniMessage = MiniMessage.miniMessage()
 
-    private val messagesFolder = plugin.saveResources(Path("messages"))
+    private val messagesFolder = plugin.saveResources("messages")
 
     private val messageMap = HashMap<Locale, Map<String, String>>()
 

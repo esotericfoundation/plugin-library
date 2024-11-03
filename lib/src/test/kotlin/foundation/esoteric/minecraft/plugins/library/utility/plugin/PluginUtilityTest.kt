@@ -3,7 +3,6 @@ package foundation.esoteric.minecraft.plugins.library.utility.plugin
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
 import java.io.File
-import kotlin.io.path.Path
 import kotlin.test.*
 
 class PluginUtilityTest {
@@ -16,7 +15,7 @@ class PluginUtilityTest {
     }
 
     @Test fun savingFolderWorks() {
-        val file = plugin.saveResources(Path("TestPluginResourcePack"))
+        val file = plugin.saveResources("TestPluginResourcePack")
 
         assertTrue(file.exists())
         assertTrue(file.isDirectory)

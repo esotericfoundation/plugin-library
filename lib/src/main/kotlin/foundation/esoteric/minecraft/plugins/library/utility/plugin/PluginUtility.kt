@@ -62,3 +62,21 @@ fun Plugin.saveResources(resourceFolderPath: Path): File {
     val subFolder = File(dataFolder, resourceFolderPath.toString())
     return resourceFolderPath.saveResources(subFolder)
 }
+
+/**
+ * Saves the raw contents of any resource folder embedded with a plugin's .jar.
+ *
+ * The resources are saved into the plugin's data folder using the same
+ * hierarchy as the .jar file (subdirectories are preserved).
+ * @param resourceFolderPath the embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @return The saved folder `File`.
+ * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource folder.
+ * @see Plugin.saveResource
+ * @see Plugin.getResource
+ * @see Plugin.getDataFolder
+ * @see Plugin.getDataPath
+ * @author Esoteric Enderman
+ */
+fun Plugin.saveResources(resourceFolderPath: String): File {
+    return saveResources(Path.of(resourceFolderPath))
+}

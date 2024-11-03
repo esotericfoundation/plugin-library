@@ -6,7 +6,6 @@ import foundation.esoteric.minecraft.plugins.library.item.TexturedItem
 import org.apache.commons.io.FileUtils
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
-import kotlin.io.path.Path
 
 /**
  * A class that helps your plugin to implement custom resources via a resource pack.
@@ -20,7 +19,7 @@ import kotlin.io.path.Path
  */
 class ResourcePackManager(internal val plugin: JavaPlugin) {
 
-    internal val resourcePath = Path(plugin.name + "ResourcePack")
+    internal val resourcePath = plugin.name + "ResourcePack"
     internal val zipFile = File(plugin.dataFolder, "$resourcePath.zip")
 
     init {
