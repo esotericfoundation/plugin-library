@@ -3,6 +3,7 @@ package foundation.esoteric.minecraft.plugins.library.pack.resource
 import foundation.esoteric.minecraft.plugins.library.utility.plugin.saveResources
 import foundation.esoteric.utility.file.zip
 import org.apache.commons.io.FileUtils
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import kotlin.io.path.Path
 
@@ -15,24 +16,22 @@ import kotlin.io.path.Path
  * For example, if your plugin's name (the name that appears in-game when running `/plugins`) is SCPPlugin, then the resource pack
  * must be named `SCPPluginResourcePack`.
  */
-class ResourcePackManager(internal val plugin: ResourcePackPlugin) {
+class ResourcePackManager(internal val plugin: JavaPlugin) {
 
-    val resourcePackResourceFolderName = Path(plugin.name + "ResourcePack")
-
-    var resourcePackZipFile: File? = null
+    internal val resourcePath = Path(plugin.name + "ResourcePack")
+    internal val zipFile = File(plugin.dataFolder, "$resourcePath.zip")
 
     init {
-        val resourcePackFolder = plugin.saveResources(resourcePackResourceFolderName)
+        val resourcePackFolder = plugin.saveResources(resourcePath)
 
         try {
-            resourcePackZipFile = File(plugin.dataFolder, "$resourcePackResourceFolderName.zip")
-            resourcePackFolder.zip(resourcePackZipFile!!)
+            resourcePackFolder.zip(zipFile)
 
             FileUtils.deleteDirectory(resourcePackFolder)
+
+            ResourcePackServer(this)
         } catch (exception: Exception) {
             exception.printStackTrace()
         }
-
-        ResourcePackServer(this)
     }
 }

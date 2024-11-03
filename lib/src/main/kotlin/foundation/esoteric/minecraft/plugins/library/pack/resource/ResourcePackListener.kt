@@ -15,7 +15,7 @@ import java.net.URI
  */
 class ResourcePackListener(resourcePackServer: ResourcePackServer) : Listener {
     private val resourcePackInfo = ResourcePackInfo.resourcePackInfo()
-        .hash(resourcePackServer.resourcePackManager.resourcePackZipFile!!.sha1())
+        .hash(resourcePackServer.resourcePackManager.zipFile.sha1())
         .uri(URI.create("http://" + resourcePackServer.socketAddress + "/")).build()
 
     @EventHandler

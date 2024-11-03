@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpHandler
 import com.sun.net.httpserver.HttpServer
 import org.bukkit.Bukkit
-import org.bukkit.plugin.java.JavaPlugin
 import java.io.FileInputStream
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -14,54 +13,48 @@ import java.net.InetSocketAddress
  *
  * @param plugin The plugin that implements this resource pack.
  */
-class ResourcePackServer(val resourcePackManager: ResourcePackManager) {
-
-    private val plugin = resourcePackManager.plugin
-
-    private val hostName: String = Bukkit.getServer().ip
-    private val port: Int = plugin.config.getInt("http-server.port")
+class ResourcePackServer(internal val resourcePackManager: ResourcePackManager) {
 
     private val successResponseCode = 200
     private val notFoundResponseCode = 404
 
-    private var server: HttpServer? = null
+    private lateinit var server: HttpServer
 
-    fun getPort(): Int? {
-        return server?.address?.port
-    }
+    private val serverPort: Int
+        get() = server.address.port
 
-    fun getHostName(): String? {
-        return server?.address?.hostName
-    }
+    private val serverHostName: String
+        get() = server.address.hostName
 
-    val socketAddress: String
-        get() = getHostName() + ":" + getPort()
+    internal val socketAddress: String
+        get() = "$serverHostName:$serverPort"
 
     init {
         try {
+            val hostName = Bukkit.getServer().ip
+            val port = resourcePackManager.plugin.config.getInt("http-server.port")
+
             server = HttpServer.create(InetSocketAddress(hostName, port), 0)
+
+            server.createContext("/", ResourcePackDownloadHandler())
+
+            server.executor = null
+            server.start()
+
+            Bukkit.getPluginManager().registerEvents(ResourcePackListener(this), resourcePackManager.plugin)
         } catch (exception: IOException) {
             exception.printStackTrace()
         }
-
-        server!!.createContext("/", ResourcePackDownloadHandler())
-
-        server!!.executor = null
-        server!!.start()
-
-        Bukkit.getPluginManager().registerEvents(ResourcePackListener(this), plugin)
     }
 
-    internal inner class ResourcePackDownloadHandler : HttpHandler {
+    private inner class ResourcePackDownloadHandler : HttpHandler {
         @Throws(IOException::class)
         override fun handle(exchange: HttpExchange) {
-            val resourcePackManager = plugin.resourcePackManager
-
-            val file = resourcePackManager.resourcePackZipFile!!
+            val file = resourcePackManager.zipFile
 
             if (file.exists()) {
                 exchange.responseHeaders["Content-Type"] = "application/zip"
-                exchange.responseHeaders["Content-Disposition"] = "attachment; filename=\"" + resourcePackManager.resourcePackResourceFolderName + ".zip" + "\""
+                exchange.responseHeaders["Content-Disposition"] = "attachment; filename=\"" + resourcePackManager.resourcePath + ".zip" + "\""
 
                 exchange.sendResponseHeaders(successResponseCode, file.length())
 
