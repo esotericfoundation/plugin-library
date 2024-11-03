@@ -1,7 +1,7 @@
 package foundation.esoteric.minecraft.plugins.library.pack.resource
 
 import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
-import foundation.esoteric.utility.file.FileUtility
+import foundation.esoteric.utility.file.zip
 import org.apache.commons.io.FileUtils
 import java.io.File
 
@@ -27,7 +27,7 @@ class ResourcePackManager(private val plugin: FileManagedPlugin) {
 
         try {
             resourcePackZipFile = File(resourceZipFilePath)
-            FileUtility.zipFolder(resourcePackFolder, resourcePackZipFile!!)
+            resourcePackFolder.zip(resourcePackZipFile!!)
 
             FileUtils.deleteDirectory(resourcePackFolder)
         } catch (exception: Exception) {

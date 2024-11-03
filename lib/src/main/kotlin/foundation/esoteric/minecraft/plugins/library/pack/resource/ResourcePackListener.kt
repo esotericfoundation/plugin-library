@@ -1,6 +1,6 @@
 package foundation.esoteric.minecraft.plugins.library.pack.resource
 
-import foundation.esoteric.utility.file.FileUtility
+import foundation.esoteric.utility.file.sha1
 import net.kyori.adventure.resource.ResourcePackInfo
 import net.kyori.adventure.resource.ResourcePackRequest
 import org.bukkit.event.EventHandler
@@ -15,7 +15,7 @@ import java.net.URI
  */
 class ResourcePackListener(plugin: ResourcePackPlugin, resourcePackServer: ResourcePackServer) : Listener {
     private val resourcePackInfo = ResourcePackInfo.resourcePackInfo()
-        .hash(FileUtility.Companion.getSha1Hash(plugin.resourcePackManager.resourcePackZipFile!!))
+        .hash(plugin.resourcePackManager.resourcePackZipFile!!.sha1())
         .uri(URI.create("http://" + resourcePackServer.socketAddress + "/")).build()
 
     @EventHandler

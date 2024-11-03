@@ -1,6 +1,6 @@
 package foundation.esoteric.minecraft.plugins.library.file
 
-import foundation.esoteric.utility.resource.ResourceUtility
+import foundation.esoteric.utility.resource.resourceFilePaths
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.nio.file.Path
@@ -10,7 +10,7 @@ class FileManager(private val plugin: JavaPlugin) {
     fun saveResourceFolder(resourcePath: Path, replace: Boolean = false): File {
         plugin.dataFolder.mkdir()
 
-        ResourceUtility.getResourceFilePaths(resourcePath).forEach {
+        resourcePath.resourceFilePaths().forEach {
             path -> plugin.saveResource(path.toString(), replace)
         }
 

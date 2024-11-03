@@ -2,7 +2,6 @@ package foundation.esoteric.minecraft.plugins.library.pack.resource
 
 import be.seeseemelk.mockbukkit.MockBukkit
 import foundation.esoteric.minecraft.plugins.library.TestPlugin
-import foundation.esoteric.utility.file.FileUtility
 import java.io.File
 import kotlin.test.*
 
