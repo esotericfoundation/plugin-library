@@ -25,7 +25,7 @@ class MessageManagerTest {
 
     @Test fun getMessageWorks() {
         val message = messageManager!!.getRawMessage(Locale.UK, "test-message")
-        assertEquals(message, "Test")
+        assertEquals("Test", message)
     }
 
     @AfterTest fun unmockMessageManager() {

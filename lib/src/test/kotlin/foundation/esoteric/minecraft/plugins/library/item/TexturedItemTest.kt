@@ -22,9 +22,9 @@ class TexturedItemTest {
     @Test fun usesCorrectModelData() {
         val item = testItem!!.createItem()
 
-        assertEquals(testItem!!::class.qualifiedName, "foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem")
-        assertEquals(testItem!!::class.qualifiedName.hashCode(), "foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem".hashCode())
-        assertEquals(item.itemMeta.customModelData, "foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem".hashCode())
+        assertEquals("foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem", testItem!!::class.qualifiedName)
+        assertEquals("foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem".hashCode(), testItem!!::class.qualifiedName.hashCode())
+        assertEquals("foundation.esoteric.minecraft.plugins.library.item.TestTexturedItem".hashCode(), item.itemMeta.customModelData)
     }
 
     @AfterTest fun unmockItemStack() {
