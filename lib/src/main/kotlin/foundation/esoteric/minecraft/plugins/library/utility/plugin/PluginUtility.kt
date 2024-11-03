@@ -51,6 +51,7 @@ fun Plugin.saveResource(resourcePath: String) {
  * The resources are saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
  * @param resourceFolderPath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @param replace If true, the embedded resources will overwrite the contents of existing files.
  * @return The saved folder `File`.
  * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource folder.
  * @see Plugin.saveResource
@@ -59,8 +60,8 @@ fun Plugin.saveResource(resourcePath: String) {
  * @see Plugin.getDataPath
  * @author Esoteric Enderman
  */
-fun Plugin.saveResources(resourceFolderPath: Path): File {
-    resourceFolderPath.resourceFilePaths().forEach { saveResource(it.toString()) }
+fun Plugin.saveResources(resourceFolderPath: Path, replace: Boolean = true): File {
+    resourceFolderPath.resourceFilePaths().forEach { saveResource(it.toString(), replace) }
     return File(dataFolder, resourceFolderPath.toString())
 }
 
@@ -70,6 +71,7 @@ fun Plugin.saveResources(resourceFolderPath: Path): File {
  * The resources are saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
  * @param resourceFolderPath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @param replace If true, the embedded resources will overwrite the contents of existing files.
  * @return The saved folder `File`.
  * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource folder.
  * @see Plugin.saveResource
@@ -78,6 +80,6 @@ fun Plugin.saveResources(resourceFolderPath: Path): File {
  * @see Plugin.getDataPath
  * @author Esoteric Enderman
  */
-fun Plugin.saveResources(resourceFolderPath: String): File {
-    return saveResources(Path.of(resourceFolderPath))
+fun Plugin.saveResources(resourceFolderPath: String, replace: Boolean = true): File {
+    return saveResources(Path.of(resourceFolderPath), replace)
 }
