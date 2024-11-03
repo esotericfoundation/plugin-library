@@ -1,5 +1,6 @@
 package foundation.esoteric.minecraft.plugins.library.utility.plugin
 
+import foundation.esoteric.utility.resource.resourceFilePaths
 import foundation.esoteric.utility.resource.saveResources
 import org.bukkit.plugin.Plugin
 import java.io.File
@@ -59,8 +60,8 @@ fun Plugin.saveResource(resourcePath: String) {
  * @author Esoteric Enderman
  */
 fun Plugin.saveResources(resourceFolderPath: Path): File {
-    val subFolder = File(dataFolder, resourceFolderPath.toString())
-    return resourceFolderPath.saveResources(subFolder)
+    resourceFolderPath.resourceFilePaths().forEach { saveResource(it.toString()) }
+    return File(dataFolder, resourceFolderPath.toString())
 }
 
 /**
