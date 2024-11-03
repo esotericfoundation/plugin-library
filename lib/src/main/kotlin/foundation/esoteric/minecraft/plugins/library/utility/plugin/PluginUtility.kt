@@ -11,9 +11,9 @@ import java.nio.file.Path
  *
  * The resource is saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
- * @param resourcePath the embedded resource path to look for within the plugin's .jar file. (No preceding slash).
- * @param replace if true, the embedded resource will overwrite the contents of an existing file.
- * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource.
+ * @param resourcePath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @param replace If true, the embedded resource will overwrite the contents of an existing file.
+ * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource.
  * @see Plugin.saveResource
  * @see Plugin.saveResources
  * @see Plugin.getResource
@@ -31,8 +31,8 @@ fun Plugin.saveResource(resourcePath: Path, replace: Boolean = true) {
  *
  * The resource is saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
- * @param resourcePath the embedded resource path to look for within the plugin's .jar file. (No preceding slash).
- * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource.
+ * @param resourcePath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource.
  * @see Plugin.saveResource
  * @see Plugin.saveResources
  * @see Plugin.getResource
@@ -49,9 +49,9 @@ fun Plugin.saveResource(resourcePath: String) {
  *
  * The resources are saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
- * @param resourceFolderPath the embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @param resourceFolderPath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
  * @return The saved folder `File`.
- * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource folder.
+ * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource folder.
  * @see Plugin.saveResource
  * @see Plugin.getResource
  * @see Plugin.getDataFolder
@@ -68,9 +68,9 @@ fun Plugin.saveResources(resourceFolderPath: Path): File {
  *
  * The resources are saved into the plugin's data folder using the same
  * hierarchy as the .jar file (subdirectories are preserved).
- * @param resourceFolderPath the embedded resource path to look for within the plugin's .jar file. (No preceding slash).
+ * @param resourceFolderPath The embedded resource path to look for within the plugin's .jar file. (No preceding slash).
  * @return The saved folder `File`.
- * @throws IllegalArgumentException if the resource path is null, empty, or points to a nonexistent resource folder.
+ * @throws IllegalArgumentException If the resource path is null, empty, or points to a nonexistent resource folder.
  * @see Plugin.saveResource
  * @see Plugin.getResource
  * @see Plugin.getDataFolder
