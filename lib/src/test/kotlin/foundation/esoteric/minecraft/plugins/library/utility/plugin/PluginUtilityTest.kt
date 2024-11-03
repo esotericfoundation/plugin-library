@@ -16,10 +16,8 @@ class PluginUtilityTest {
     }
 
     @Test fun savingFolderWorks() {
-        val resourcesPath = Path("TestPluginResourcePack")
-        val file = File(plugin.dataFolder, resourcesPath.toString())
+        val file = plugin.saveResources(Path("TestPluginResourcePack"))
 
-        plugin.saveResources(resourcesPath)
         assertTrue(file.exists())
         assertTrue(file.isDirectory)
         assertFalse(file.isFile)
