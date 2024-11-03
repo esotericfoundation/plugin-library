@@ -6,7 +6,6 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
-import java.io.File
 import java.util.Locale
 import kotlin.collections.HashMap
 import kotlin.io.path.Path
@@ -23,12 +22,11 @@ class MessageManager(private val plugin: JavaPlugin) {
 
     private val miniMessage = MiniMessage.miniMessage()
 
-    private val messagesFolder: File = File(plugin.dataFolder, "messages")
+    private val messagesFolder = plugin.saveResources(Path("messages"))
 
     private val messageMap = HashMap<Locale, Map<String, String>>()
 
     init {
-        plugin.saveResources(Path("messages"))
         loadMessages()
     }
 

@@ -1,7 +1,7 @@
 package foundation.esoteric.minecraft.plugins.library.pack.resource
 
+import foundation.esoteric.minecraft.plugins.library.utility.plugin.saveResources
 import foundation.esoteric.utility.file.zip
-import foundation.esoteric.utility.resource.saveResources
 import org.apache.commons.io.FileUtils
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -23,13 +23,10 @@ class ResourcePackManager(private val plugin: JavaPlugin) {
     var resourcePackZipFile: File? = null
 
     init {
-        val resourcePackFolder = File(plugin.dataFolder, plugin.name + "ResourcePack")
-        resourcePackResourceFolderName.saveResources(resourcePackFolder)
-
-        val resourceZipFilePath = plugin.dataPath.toString() + File.separator + resourcePackResourceFolderName + ".zip"
+        val resourcePackFolder = plugin.saveResources(resourcePackResourceFolderName)
 
         try {
-            resourcePackZipFile = File(resourceZipFilePath)
+            resourcePackZipFile = File(plugin.dataFolder, "$resourcePackResourceFolderName.zip")
             resourcePackFolder.zip(resourcePackZipFile!!)
 
             FileUtils.deleteDirectory(resourcePackFolder)

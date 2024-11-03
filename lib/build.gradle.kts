@@ -35,7 +35,7 @@ dependencies {
 
     implementation("commons-io:commons-io:2.17.0")
 
-    implementation("com.github.EsotericFoundation:utility.kt:1.0.0")
+    implementation("com.github.EsotericFoundation:utility.kt:1.1.0")
 }
 
 java {

@@ -13,7 +13,7 @@ fun JavaPlugin.saveResource(resourcePath: String) {
     saveResource(resourcePath, true)
 }
 
-fun JavaPlugin.saveResources(resourceFolderPath: Path) {
+fun JavaPlugin.saveResources(resourceFolderPath: Path): File {
     val subFolder = File(dataFolder, resourceFolderPath.toString())
-    resourceFolderPath.saveResources(subFolder)
+    return resourceFolderPath.saveResources(subFolder)
 }
