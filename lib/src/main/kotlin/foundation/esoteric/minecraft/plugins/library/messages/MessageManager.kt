@@ -1,13 +1,15 @@
 package foundation.esoteric.minecraft.plugins.library.messages
 
-import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
+import foundation.esoteric.minecraft.plugins.library.utility.plugin.saveResources
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.util.Locale
 import kotlin.collections.HashMap
+import kotlin.io.path.Path
 
 /**
  * The message manager class provides utility for dealing with messages in your
@@ -17,16 +19,16 @@ import kotlin.collections.HashMap
  * If you intend to use the message manager, create a "messages"
  * folder in your "resources" directory.
  */
-class MessageManager(private val plugin: FileManagedPlugin) {
+class MessageManager(private val plugin: JavaPlugin) {
 
     private val miniMessage = MiniMessage.miniMessage()
 
-    private val messagesFolder: File
+    private val messagesFolder: File = File(plugin.dataFolder, "messages")
 
     private val messageMap = HashMap<Locale, Map<String, String>>()
 
     init {
-        messagesFolder = plugin.fileManager.saveResourceFolder("messages", !plugin.config.getBoolean("messages.enable-customisation", false))
+        plugin.saveResources(Path("messages"))
         loadMessages()
     }
 

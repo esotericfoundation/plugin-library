@@ -1,0 +1,19 @@
+package foundation.esoteric.minecraft.plugins.library.utility.plugin
+
+import foundation.esoteric.utility.resource.saveResources
+import org.bukkit.plugin.java.JavaPlugin
+import java.io.File
+import java.nio.file.Path
+
+fun JavaPlugin.saveResource(resourcePath: Path, replace: Boolean = true) {
+    saveResource(resourcePath.toString(), replace)
+}
+
+fun JavaPlugin.saveResource(resourcePath: String) {
+    saveResource(resourcePath, true)
+}
+
+fun JavaPlugin.saveResources(resourceFolderPath: Path) {
+    val subFolder = File(dataFolder, resourceFolderPath.toString())
+    resourceFolderPath.saveResources(subFolder)
+}

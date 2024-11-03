@@ -1,9 +1,11 @@
 package foundation.esoteric.minecraft.plugins.library.pack.resource
 
-import foundation.esoteric.minecraft.plugins.library.file.FileManagedPlugin
 import foundation.esoteric.utility.file.zip
+import foundation.esoteric.utility.resource.saveResources
 import org.apache.commons.io.FileUtils
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import kotlin.io.path.Path
 
 /**
  * A class that helps your plugin to implement custom resources via a resource pack.
@@ -14,14 +16,15 @@ import java.io.File
  * For example, if your plugin's name (the name that appears in-game when running `/plugins`) is SCPPlugin, then the resource pack
  * must be named `SCPPluginResourcePack`.
  */
-class ResourcePackManager(private val plugin: FileManagedPlugin) {
+class ResourcePackManager(private val plugin: JavaPlugin) {
 
-    val resourcePackResourceFolderName = plugin.name + "ResourcePack"
+    val resourcePackResourceFolderName = Path(plugin.name + "ResourcePack")
 
     var resourcePackZipFile: File? = null
 
     init {
-        val resourcePackFolder: File = plugin.fileManager.saveResourceFolder(resourcePackResourceFolderName, true)
+        val resourcePackFolder = File(plugin.dataFolder, plugin.name + "ResourcePack")
+        resourcePackResourceFolderName.saveResources(resourcePackFolder)
 
         val resourceZipFilePath = plugin.dataPath.toString() + File.separator + resourcePackResourceFolderName + ".zip"
 
