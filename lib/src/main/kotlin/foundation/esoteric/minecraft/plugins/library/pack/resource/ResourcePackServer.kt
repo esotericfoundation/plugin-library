@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpHandler
 import com.sun.net.httpserver.HttpServer
 import org.bukkit.Bukkit
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.FileInputStream
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -13,7 +14,9 @@ import java.net.InetSocketAddress
  *
  * @param plugin The plugin that implements this resource pack.
  */
-class ResourcePackServer(private val plugin: ResourcePackPlugin) {
+class ResourcePackServer(resourcePackManager: ResourcePackManager) {
+
+    private val plugin = resourcePackManager.plugin
 
     private val hostName: String = Bukkit.getServer().ip
     private val port: Int = plugin.config.getInt("http-server.port")
