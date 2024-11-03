@@ -14,7 +14,7 @@ import java.net.InetSocketAddress
  *
  * @param plugin The plugin that implements this resource pack.
  */
-class ResourcePackServer(resourcePackManager: ResourcePackManager) {
+class ResourcePackServer(val resourcePackManager: ResourcePackManager) {
 
     private val plugin = resourcePackManager.plugin
 
@@ -49,7 +49,7 @@ class ResourcePackServer(resourcePackManager: ResourcePackManager) {
         server!!.executor = null
         server!!.start()
 
-        Bukkit.getPluginManager().registerEvents(ResourcePackListener(plugin, this), plugin)
+        Bukkit.getPluginManager().registerEvents(ResourcePackListener(this), plugin)
     }
 
     internal inner class ResourcePackDownloadHandler : HttpHandler {

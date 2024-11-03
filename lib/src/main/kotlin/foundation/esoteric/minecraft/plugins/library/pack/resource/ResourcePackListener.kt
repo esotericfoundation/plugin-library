@@ -13,9 +13,9 @@ import java.net.URI
  * @param plugin The plugin class. This must implement the ResourcePackPlugin interface.
  * @param resourcePackServer The HTTP server manager associated with this plugin.
  */
-class ResourcePackListener(plugin: ResourcePackPlugin, resourcePackServer: ResourcePackServer) : Listener {
+class ResourcePackListener(resourcePackServer: ResourcePackServer) : Listener {
     private val resourcePackInfo = ResourcePackInfo.resourcePackInfo()
-        .hash(plugin.resourcePackManager.resourcePackZipFile!!.sha1())
+        .hash(resourcePackServer.resourcePackManager.resourcePackZipFile!!.sha1())
         .uri(URI.create("http://" + resourcePackServer.socketAddress + "/")).build()
 
     @EventHandler
