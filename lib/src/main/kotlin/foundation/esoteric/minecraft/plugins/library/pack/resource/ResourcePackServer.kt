@@ -8,12 +8,7 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.net.InetSocketAddress
 
-/**
- * This class handles sending the resource pack to clients.
- *
- * @param plugin The plugin that implements this resource pack.
- */
-class ResourcePackServer(internal val resourcePackManager: ResourcePackManager) {
+internal class ResourcePackServer(internal val resourcePackManager: ResourcePackManager) {
 
     private val successResponseCode = 200
     private val notFoundResponseCode = 404
