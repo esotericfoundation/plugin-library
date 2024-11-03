@@ -2,6 +2,7 @@ package foundation.esoteric.minecraft.plugins.library.pack.resource
 
 import foundation.esoteric.minecraft.plugins.library.utility.plugin.saveResources
 import foundation.esoteric.utility.file.zip
+import foundation.esoteric.minecraft.plugins.library.item.TexturedItem
 import org.apache.commons.io.FileUtils
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -14,6 +15,7 @@ import kotlin.io.path.Path
  * separate Git repository and add it as a submodule. The resource pack directory **MUST** be named `plugin.name + "ResourcePack"`.
  * For example, if your plugin's name (the name that appears in-game when running `/plugins`) is `SCPPlugin`, then the resource pack
  * must be named `SCPPluginResourcePack`.
+ * @see TexturedItem
  * @author Esoteric Enderman
  */
 class ResourcePackManager(internal val plugin: JavaPlugin) {
