@@ -1,9 +1,9 @@
 plugins {
+    alias(libs.plugins.java.library)
+
     alias(libs.plugins.kotlin.jvm)
 
-    `java-library`
-
-    id("maven-publish")
+    alias(libs.plugins.maven.publish)
 }
 
 group = "foundation.esoteric"
@@ -17,25 +17,21 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    compileOnly(libs.paper)
+
+    compileOnly(libs.adventureapi)
+    implementation(libs.commandapi)
+
+    implementation(libs.esoteric.utility)
+
+    implementation(libs.commons.io)
+
+    testRuntimeOnly(libs.junit.platform)
     testImplementation(libs.junit.jupiter.engine)
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(libs.junit.kotlin)
 
-    testImplementation("com.github.seeseemelk:MockBukkit-v1.21:3.107.0")
-
-    api(libs.commons.math3)
-
-    implementation(libs.guava)
-
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
-    compileOnly("net.kyori:adventure-api:4.17.0")
-
-    implementation("dev.jorel", "commandapi-bukkit-shade-mojang-mapped", "9.6.0")
-
-    implementation("commons-io:commons-io:2.17.0")
-
-    implementation("com.github.EsotericFoundation:utility.kt:1.1.1")
+    testImplementation(libs.mockbukkit)
 }
 
 java {
