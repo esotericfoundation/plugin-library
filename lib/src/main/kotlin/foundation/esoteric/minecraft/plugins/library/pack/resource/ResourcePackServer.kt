@@ -17,13 +17,13 @@ internal class ResourcePackServer(internal val resourcePackManager: ResourcePack
 
     private lateinit var server: HttpServer
 
-    private val serverPort: Int
+    private val serverPort
         get() = server.address.port
 
-    private val serverHostName: String
+    private val serverHostName
         get() = server.address.hostName
 
-    internal val socketAddress: String
+    internal val socketAddress
         get() = "$serverHostName:$serverPort"
 
     init {
