@@ -7,9 +7,8 @@ import org.bukkit.block.Block
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 
-abstract class CustomBlock(customMultiblockManager: CustomBlockManager, private val customblockId: String) :
-    Listener {
-    protected val plugin: JavaPlugin = customMultiblockManager.getPlugin()
+abstract class CustomBlock(multiblockManager: CustomBlockManager, customBlockId: String) : Listener {
+    protected val plugin: JavaPlugin = multiblockManager.getPlugin()
 
     private val customBlocks: MutableList<List<BlockLocation>> = ArrayList()
 
@@ -24,7 +23,7 @@ abstract class CustomBlock(customMultiblockManager: CustomBlockManager, private 
     init {
         Bukkit.getPluginManager().registerEvents(this, plugin)
 
-        customMultiblockManager.addCustomMultiblock(customblockId, this)
+        multiblockManager.addCustomMultiblock(customBlockId, this)
     }
 
     protected abstract fun generateCustomMultiblock(placeLocation: Location?): List<Block>
