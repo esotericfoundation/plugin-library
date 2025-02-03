@@ -58,7 +58,9 @@ abstract class CustomItem(protected val plugin: CustomItemPlugin, private val it
      * @param itemStack The `ItemStack` to check.
      * @return Whether the `itemStack` is an instance of this custom item.
      */
-    fun isItem(itemStack: ItemStack): Boolean {
+    fun isItem(itemStack: ItemStack?): Boolean {
+        itemStack ?: return false
+
         if (!itemStack.hasItemMeta()) {
             return false
         }
