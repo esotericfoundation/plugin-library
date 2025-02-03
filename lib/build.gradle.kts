@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "foundation.esoteric"
-version = "0.8.3"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
