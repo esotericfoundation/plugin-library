@@ -11,9 +11,9 @@ import foundation.esoteric.minecraft.plugins.library.item.CustomItemPlugin
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 
-class GiveCustomItemCommand(plugin: CustomItemPlugin) : CommandAPICommand("give-custom-item") {
+class GiveCustomItemCommand(plugin: CustomItemPlugin) : CommandAPICommand("i") {
     init {
-        val customItemArgumentNodeName = "custom-item-id"
+        val customItemArgumentNodeName = "id"
 
         withArguments(StringArgument(customItemArgumentNodeName).includeSuggestions(ArgumentSuggestions.strings(plugin.customItemManager.getItemIds())))
         withPermission(CommandPermission.OP)
