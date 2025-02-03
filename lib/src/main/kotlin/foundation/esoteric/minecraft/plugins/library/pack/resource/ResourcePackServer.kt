@@ -10,6 +10,8 @@ import java.net.InetSocketAddress
 
 internal class ResourcePackServer(internal val resourcePackManager: ResourcePackManager) {
 
+    private val defaultHttpServerPort = 24125
+
     private val successResponseCode = 200
     private val notFoundResponseCode = 404
 
@@ -27,7 +29,7 @@ internal class ResourcePackServer(internal val resourcePackManager: ResourcePack
     init {
         try {
             val hostName = Bukkit.getServer().ip
-            val port = resourcePackManager.plugin.config.getInt("http-server.port")
+            val port = resourcePackManager.plugin.config.getInt("http-server.port", defaultHttpServerPort)
 
             server = HttpServer.create(InetSocketAddress(hostName, port), 0)
 
