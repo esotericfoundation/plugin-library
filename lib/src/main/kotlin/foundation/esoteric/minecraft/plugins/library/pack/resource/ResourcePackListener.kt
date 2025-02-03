@@ -11,7 +11,7 @@ import java.net.URI
 internal class ResourcePackListener(resourcePackServer: ResourcePackServer) : Listener {
     private val resourcePackInfo = ResourcePackInfo.resourcePackInfo()
         .hash(resourcePackServer.resourcePackManager.zipFile.sha1())
-        .uri(URI.create("http://" + resourcePackServer.socketAddress + "/")).build()
+        .uri(URI.create("https://" + resourcePackServer.socketAddress + "/")).build()
 
     @EventHandler
     internal fun onPlayerJoin(event: PlayerJoinEvent) {
