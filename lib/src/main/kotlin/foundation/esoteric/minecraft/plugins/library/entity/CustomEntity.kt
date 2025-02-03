@@ -18,9 +18,7 @@ abstract class CustomEntity<E : Entity> protected constructor(protected val plug
 
     fun createEntity(spawnLocation: Location): E {
         return spawnLocation.world.spawnEntity(spawnLocation, entityType, CreatureSpawnEvent.SpawnReason.DEFAULT) { entity ->
-            toEntity(
-                entity as E
-            )
+            toEntity(entity as E)
         } as E
     }
 
