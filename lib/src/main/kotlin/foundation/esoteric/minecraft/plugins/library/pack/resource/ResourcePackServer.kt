@@ -6,14 +6,12 @@ import com.sun.net.httpserver.HttpServer
 import org.bukkit.Bukkit
 import java.io.FileInputStream
 import java.io.IOException
+import java.net.HttpURLConnection
 import java.net.InetSocketAddress
 
 internal class ResourcePackServer(internal val resourcePackManager: ResourcePackManager) {
 
     private val defaultHttpServerPort = 24125
-
-    private val successResponseCode = 200
-    private val notFoundResponseCode = 404
 
     private lateinit var server: HttpServer
 
@@ -53,7 +51,7 @@ internal class ResourcePackServer(internal val resourcePackManager: ResourcePack
                 exchange.responseHeaders["Content-Type"] = "application/zip"
                 exchange.responseHeaders["Content-Disposition"] = "attachment; filename=\"" + resourcePackManager.resourcePath + ".zip" + "\""
 
-                exchange.sendResponseHeaders(successResponseCode, file.length())
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, file.length())
 
                 FileInputStream(file).use { fileInputStream ->
                     exchange.responseBody.use { outputStream ->
@@ -65,8 +63,8 @@ internal class ResourcePackServer(internal val resourcePackManager: ResourcePack
                     }
                 }
             } else {
-                val response = "$notFoundResponseCode (Not Found)\n"
-                exchange.sendResponseHeaders(notFoundResponseCode, response.length.toLong())
+                val response = "${HttpURLConnection.HTTP_NOT_FOUND} (Not Found)\n"
+                exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, response.length.toLong())
 
                 val outputStream = exchange.responseBody
                 outputStream.write(response.toByteArray())
