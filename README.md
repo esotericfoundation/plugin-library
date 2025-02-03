@@ -1,5 +1,7 @@
 # Esoteric Plugin Library
 
+[![Project Status: Maintained](./assets/images/badges/status.svg)](./)
+
 > A fully functional Minecraft plugin library written in Kotlin.
 
 ## License
