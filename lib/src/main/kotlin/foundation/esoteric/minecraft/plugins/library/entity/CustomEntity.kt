@@ -35,9 +35,7 @@ abstract class CustomEntity<E : Entity> protected constructor(protected val plug
     }
 
     fun isEntity(entity: Entity?): Boolean {
-        if (entity == null) {
-            return false
-        }
+        entity ?: return false
 
         return entityId === entity.persistentDataContainer.get(plugin.customEntityManager.customEntityIdKey, PersistentDataType.STRING)
     }
