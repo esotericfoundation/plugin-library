@@ -15,7 +15,7 @@ import org.bukkit.persistence.PersistentDataType
  *
  * Implement all needed methods, after which you must instantiate this class **once** (it is a singleton).
  *
- * @see foundation.esoteric.minecraft.plugins.library.commands.GiveCustomItemCommand If you want a command that allows you to give yourself this custom item.
+ * @see foundation.esoteric.minecraft.plugins.library.commands.GiveCustomItemCommand
  */
 abstract class CustomItem(protected val plugin: CustomItemPlugin, private val itemId: String, private val material: Material) : Listener {
     init {
