@@ -37,10 +37,10 @@ class MessageManager(private val plugin: JavaPlugin) {
 
             val config = YamlConfiguration.loadConfiguration(file)
             for (messageKey in config.getKeys(false)) {
-                map.put(messageKey, config.getString(messageKey)!!)
+                map[messageKey] = config.getString(messageKey)!!
             }
 
-            messageMap.put(locale, map)
+            messageMap[locale] = map
         }
     }
 
